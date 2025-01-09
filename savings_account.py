@@ -1,5 +1,22 @@
 # Import the create_cd_account and create_savings_account functions
-from savings_account import create_savings_account
+
+def create_savings_account(balance, apr, months):
+    """Creates a savings account, calculates interest earned, and updates the account balance.
+
+    Args:
+        balance (float): The initial savings account balance.
+        apr (float): The annual interest rate for the savings account.
+        months (int): The number of months the interest is calculated for.
+
+    Returns:
+        float: The updated savings account balance after adding the interest earned.
+        float: The interest earned over the given months.
+    """
+    interest_earned = balance * (apr / 100) * (months / 12)  # Calculate interest
+    updated_balance = balance + interest_earned  # Update balance with interest
+    return updated_balance, interest_earned
+
+
 from cd_account import create_cd_account
 
 # Define the main function
@@ -33,13 +50,5 @@ def main():
     print(f"${interest_earned:,.2f}")
 
 if __name__ == "__main__":
-    main()
     # Call the main function.
-order_ids = [2742071, 2173913, 6128929]
-
-def find_order_price(order_id):
-    order_lines_df = df.loc[df['order_id'] == order_id, 'line_price']
-    return round(order_lines_df.sum(), 2)
-
-for order_id in order_ids:
-    print(f"Order {order_id} total: ${find_order_price(order_id)}")
+    main()
